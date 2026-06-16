@@ -133,7 +133,7 @@ public class Main {
 //        UnaryOperator<Integer> sub = (num) -> num*2 + 100;
 //       System.out.println(sub.apply(101));
 
-        Map<String, Integer> map = wordFrequencies ("a a a a b b b c d d");
+        Map<String, Integer> map = wordFrequencies ("a a a a b b b c c c c d d d d d d d");
         List<String> strings = topThreeWords (map);
         System.out.println(strings);
 
@@ -145,10 +145,10 @@ public class Main {
         List<String> words = Arrays.asList(text.split(" "));
 
         for (String word : words){
-            wordFrequencies.put(
-                    word,
-                    wordFrequencies.getOrDefault(word, 0) + 1
-            );
+            //wordFrequencies.put( word, wordFrequencies.getOrDefault(word, 0) + 1);
+          //  wordFrequencies.merge(word , 1, (oldValue, newValue) -> oldValue + newValue);
+
+            wordFrequencies.merge(word, 1 , Integer::sum);
         }
         return wordFrequencies;
     }
